@@ -1,0 +1,44 @@
+{% extends 'second_exam_attempt_app/base.html' %}
+{% load static %}
+
+{% block title%}Edit Job{% endblock %}
+
+{% block extrastyles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/edit_css/edit.css' %}" />
+{% endblock %}
+
+{% block edit %}
+
+<div id="job_container_1" style="font-size:50px">Hello {{ user.first_name }}! Edit a job!</div>
+<div class="pages_container">
+    <a class="pages" href="/dashboard">Home</a>
+</div>
+<div id="logout"><a href="/logout">Logout</a>
+</div>
+<br>
+			
+<form action="/jobs/edit/process/{{ job_to_edit.id }}" method="POST">
+	{% csrf_token %}
+	<div class="form-group">
+		<label>Title:</label>
+		<input class="form-control" value="{{ job_to_edit.job_title }}" name="Title">
+	</div>
+
+	<div class="form-group">
+		<label>Description:</label>
+		<input class="form-control" value="{{ job_to_edit.job_description }}" name="Description">
+    </div>
+    
+    <div class="form-group">
+        <label>Location:</label>
+        <input class="form-control" value="{{ job_to_edit.job_location }}" name="Location">
+    </div>
+
+	<button class="btn btn-info" types ="submit">Submit</button>
+</form>
+
+
+
+
+
+{% endblock %}

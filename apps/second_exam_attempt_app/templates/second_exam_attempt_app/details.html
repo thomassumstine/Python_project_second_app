@@ -1,0 +1,31 @@
+{% extends 'second_exam_attempt_app/base.html' %}
+{% load static %}
+
+{% block title%}View Job{% endblock %}
+
+{% block extrastyles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stats_css/stats.css' %}" />
+{% endblock %}
+
+{% block details %}
+
+<div id="job_container_1" style="font-size:50px">Hello {{ user.first_name }}! These are the job details!</div>
+
+<div class="pages_container">
+		<a class="pages" href="/dashboard">Home</a>
+	</div>
+	<div id="logout"><a href="/logout">Logout</a>
+	</div>
+	<br>
+
+		<div>
+			<h4>{{ job_to_view.job_title }}</h4>
+			<p>{{ job_to_view.job_description }}</p>
+            <p>Location: {{ job_to_view.job_location }}</p>
+            <p>Posted by: {{ job_to_view.created_by.first_name }}</p>
+            <p>Posted by: {{ job_to_view.created_at }}</p>
+		</div>
+
+
+
+{% endblock %}

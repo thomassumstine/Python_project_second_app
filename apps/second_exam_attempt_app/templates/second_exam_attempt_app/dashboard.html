@@ -1,0 +1,46 @@
+{% extends 'second_exam_attempt_app/base.html' %}
+{% load static %}
+
+{% block title%}Handy Helper Dashboard{% endblock %}
+
+{% block extrastyles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_css/dashboard.css' %}" />
+{% endblock %}
+
+{% block dashboard %}
+
+<div id="index_container_top">
+	<p id="index_header" style="font-size:50px">Hello {{ user.first_name }}!</p>
+	<a id="logout" href="/logout">Logout</a>
+	<button id="jobs"><a href="/jobs/new">New job!</a></button>
+</div>
+
+<h3>Everyone's jobs:</h3>
+
+<table class="table">
+	<thead class="thead-dark">
+		<th>Job</th>
+		<th>Location</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+		{% for current_job in all_jobs %}
+		<tr>
+			<td>{{current_job.job_title}}</td>
+            <td>{{current_job.job_location}}</td>
+			<td><a href="/jobs/{{current_job.id}}">View</a>
+                {% if uid == current_job.created_by.id %}
+                <a href="/jobs/remove/{{current_job.id}}">Remove</a>
+                {% endif %}
+                {% if uid == current_job.created_by.id %}
+                <a href="/jobs/edit/{{current_job.id}}">Edit</a>
+                {% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+
